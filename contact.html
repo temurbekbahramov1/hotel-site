@@ -1,33 +1,214 @@
+import zipfile
+import os
+
+# Fayllarni yaratamiz
+folder_path = '/mnt/data/hotel-site-updated'
+os.makedirs(folder_path, exist_ok=True)
+
+# contact.html faylini yozamiz
+contact_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Contact | Hotel Paradise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Hotel Site</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>🏨 Hotel Paradise</h1>
+    <h1>Contact Us</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
+
   <main>
-    <h2>Contact Us</h2>
-    <form>
-      <label>Name:</label><br />
-      <input type="text" placeholder="Your name" /><br /><br />
-      <label>Email:</label><br />
-      <input type="email" placeholder="you@example.com" /><br /><br />
-      <label>Message:</label><br />
-      <textarea rows="4"></textarea><br /><br />
-      <button type="submit">Send</button>
-    </form>
+    <section class="contact-info">
+      <h2>Get in Touch</h2>
+      <p><strong>Phone:</strong> <a href="tel:+998330786161">+998 33 078 61 61</a></p>
+      <p><strong>Email:</strong> <a href="mailto:dddtemurbek@gmail.com">dddtemurbek@gmail.com</a></p>
+    </section>
+
+    <section class="contact-form">
+      <h2>Send a Message</h2>
+      <form action="#" method="post">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
   </main>
+
   <footer>
-    <p>📞 +998 90 123 45 67 | ✉️ contact@hotelparadise.com</p>
+    <p>&copy; 2025 Hotel Website. All rights reserved.</p>
   </footer>
 </body>
 </html>
+"""
+
+with open(f"{folder_path}/contact.html", "w", encoding="utf-8") as f:
+    f.write(contact_html)
+
+# Boshqa kerakli fayllar (index.html, about.html, style.css) ni ham qo'shamiz
+# Bu yerda oldin tayyorlangan fayllarni qayta yaratamiz
+
+index_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Hotel Site</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Welcome to Our Hotel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Our Services</h2>
+      <p>Enjoy comfortable rooms and excellent service.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Hotel Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+"""
+
+about_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Hotel Site</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>About Our Hotel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Who We Are</h2>
+      <p>We provide the best hospitality experience for our guests.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Hotel Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+"""
+
+style_css = """
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #004080;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  background-color: #004080;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.contact-info {
+  margin-bottom: 30px;
+}
+
+.contact-form label {
+  display: block;
+  margin-top: 10px;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.contact-form button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #003366;
+}
+"""
+
+with open(f"{folder_path}/index.html", "w", encoding="utf-8") as f:
+    f.write(index_html)
+with open(f"{folder_path}/about.html", "w", encoding="utf-8") as f:
+    f.write(about_html)
+with open(f"{folder_path}/style.css", "w", encoding="utf-8") as f:
+    f.write(style_css)
+
+# Zip fayl yaratish
+zip_path = "/mnt/data/hotel-site-updated.zip"
+with zipfile.ZipFile(zip_path, "w") as zipf:
+    for file_name in ["index.html", "about.html", "contact.html", "style.css"]:
+        zipf.write(f"{folder_path}/{file_name}", arcname=file_name)
+
+zip_path
